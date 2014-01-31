@@ -11,7 +11,7 @@
 			#pragma vertex vert
 			#pragma fragment frag
 			#include "UnityCG.cginc"
-			#include "Assets/Common/GradientCommon.cginc"
+			#include "Assets/Common/Shader/GradientCommon.cginc"
 
 			sampler2D _MainTex;
 			float4 _MainTex_TexelSize;

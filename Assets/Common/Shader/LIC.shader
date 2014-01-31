@@ -45,12 +45,13 @@
 					uv += v;
 					c += tex2D(_MainTex, uv);
 				}
-				uv = i.uv;
 				for (int i = 0; i < loop; i++) {
 					uv -= v;
 					c += tex2D(_MainTex, uv);
 				}
+
 				return c / (2 * loop + 1);
+
 			}
 			ENDCG
 		}

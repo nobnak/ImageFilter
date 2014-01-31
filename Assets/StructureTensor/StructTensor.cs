@@ -33,8 +33,9 @@ public class StructTensor : MonoBehaviour {
 		Graphics.Blit(ping1, ping0, tangentFlowMap);
 		lic.SetTexture("_VectorTex", ping0);
 		Graphics.Blit(_whiteNoise, dst, lic);
+		//Graphics.Blit(src, dst, lic);
 
-		RenderTexture.ReleaseTemporary(ping0);
+        RenderTexture.ReleaseTemporary(ping0);
 		RenderTexture.ReleaseTemporary(ping1);
 	}
 }
