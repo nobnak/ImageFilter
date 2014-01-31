@@ -18,10 +18,6 @@ public class VideoRendering : MonoBehaviour {
 		StartCoroutine("UpdateAspect");
 	}
 
-	void OnRenderImage(RenderTexture src, RenderTexture dst) {
-		Graphics.Blit(src, dst);
-	}
-
 	IEnumerator UpdateAspect() {
 		while (true) {
 			yield return new WaitForSeconds(1f);

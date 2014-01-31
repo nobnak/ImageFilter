@@ -23,8 +23,8 @@ public class StructTensor : MonoBehaviour {
 			_whiteNoise.Apply();
 		}
 
-		var ping0 = RenderTexture.GetTemporary(src.width, src.height, 0, RenderTextureFormat.ARGBFloat);
-		var ping1 = RenderTexture.GetTemporary(src.width, src.height, 0, RenderTextureFormat.ARGBFloat);
+		var ping0 = RenderTexture.GetTemporary(src.width, src.height, 0, RenderTextureFormat.ARGBHalf);
+		var ping1 = RenderTexture.GetTemporary(src.width, src.height, 0, RenderTextureFormat.ARGBHalf);
 
 		Graphics.Blit(src, ping0, rgb2lab);
 		Graphics.Blit(ping0, ping1, structTensor);
