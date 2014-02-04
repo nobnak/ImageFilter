@@ -1,8 +1,6 @@
 ﻿Shader "Custom/RGB2LAB" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
-		_Contrast ("Contrast", Float) = 1.0
-		_Brightness ("Brightness", Float) = 0.0
 	}
 	SubShader {
 		ZTest Always ZWrite Off Fog { Mode Off }
@@ -16,9 +14,6 @@
 			#include "Assets/Common/Shader/LABCommon.cginc"
 
 			sampler2D _MainTex;
-			float4 _MainTex_TexelSize;
-			float _Contrast;
-			float _Brightness;
 
 			struct appdata {
 				float4 vertex : POSITION;
