@@ -66,9 +66,9 @@
 				
 				float sigmaK = _K * _Sigma;
 				float sigma2 = _Sigma * _Sigma;
-				float rSigma2 = 1.0 / sigma2;
+				float rSigma2 = 0.5 / sigma2;
 				float sigma2K = sigmaK * sigmaK;
-				float rSigma2K = 1.0 / sigma2K;
+				float rSigma2K = 0.5 / sigma2K;
 				
 				float suml = 0.0;
 				float sumw = 0.0;
@@ -101,9 +101,9 @@
 				
 				float sigmaK = _K * _Sigma;
 				float sigma2 = _Sigma * _Sigma;
-				float rSigma2 = 1.0 / sigma2;
+				float rSigma2 = 0.5 / sigma2;
 				float sigma2K = sigmaK * sigmaK;
-				float rSigma2K = 1.0 / sigma2K;
+				float rSigma2K = 0.5 / sigma2K;
 				
 				float suml = 0.0;
 				float sumw = 0.0;
