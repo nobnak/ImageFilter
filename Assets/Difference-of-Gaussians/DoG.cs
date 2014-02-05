@@ -3,15 +3,17 @@ using System.Collections;
 
 [RequireComponent(typeof(Camera))]
 public class DoG : MonoBehaviour {
-	public const string PROP_SIGMA = "_Sigma";
-	public const string PROP_K = "_K";
-	public const string PROP_P = "_P";
-	public const string PROP_PHI = "_Phi";
-	public const string PROP_EPS = "_Eps";
+	public const string PROP_DOG_DOG_TEX = "_DogTex";
+	public const string PROP_DOG_SIGMA = "_Sigma";
+	public const string PROP_DOG_K = "_K";
+	public const string PROP_DOG_P = "_P";
+	public const string PROP_DOG_PHI = "_Phi";
+	public const string PROP_DOG_EPS = "_Eps";
 
 	public Material dog;
 
 	public bool through;
+	public string nextSceneName;
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
 		if (through) {
@@ -19,8 +21,13 @@ public class DoG : MonoBehaviour {
 			return;
 		}
 
-		var tmp0 = RenderTexture.GetTemporary(src.width, src.height, 0, RenderTextureFormat.ARGBFloat);
-		var tmp1 = RenderTexture.GetTemporary(src.width, src.height, 0, RenderTextureFormat.ARGBFloat);
+		#if (UNITY_IOS || UNITY_ANDROID)
+		var rtformat = RenderTextureFormat.ARGBHalf;
+		#else
+		var rtformat = RenderTextureFormat.ARGBFloat;
+		#endif
+		var tmp0 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var tmp1 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
 
 		Graphics.Blit(src, tmp0, dog, 0);
 		Graphics.Blit(tmp0, tmp1, dog, 1);
@@ -32,14 +39,18 @@ public class DoG : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		var prevSigma = dog.GetFloat(PROP_SIGMA);
-		var prevK = dog.GetFloat(PROP_K);
-		var prevP = dog.GetFloat(PROP_P);
-		var prevPhi = dog.GetFloat(PROP_PHI);
-		var prevEps = dog.GetFloat(PROP_EPS);
+		var prevSigma = dog.GetFloat(PROP_DOG_SIGMA);
+		var prevK = dog.GetFloat(PROP_DOG_K);
+		var prevP = dog.GetFloat(PROP_DOG_P);
+		var prevPhi = dog.GetFloat(PROP_DOG_PHI);
+		var prevEps = dog.GetFloat(PROP_DOG_EPS);
 
 		GUI.color = Color.green;
 		GUILayout.BeginVertical(GUILayout.Width(200));
+		if (GUILayout.Button("Next Scene")) {
+			Application.LoadLevel(nextSceneName);
+			return;
+		}
 		GUILayout.Label("Sigma");
 		var tmpSigma = GUILayout.HorizontalSlider(prevSigma, 0.1f, 10f);
 		GUILayout.Label("K");
@@ -47,20 +58,20 @@ public class DoG : MonoBehaviour {
 		GUILayout.Label("P");
 		var tmpP = GUILayout.HorizontalSlider(prevP, 0f, 100f);
 		GUILayout.Label("Phi");
-		var tmpPhi = GUILayout.HorizontalSlider(prevPhi, 0f, 20f);
+		var tmpPhi = GUILayout.HorizontalSlider(prevPhi, 0f, 1f);
 		GUILayout.Label("Eps");
 		var tmpEps = GUILayout.HorizontalSlider(prevEps, 0f, 1f);
 		GUILayout.EndVertical();
 
 		if (tmpSigma != prevSigma)
-			dog.SetFloat(PROP_SIGMA, tmpSigma);
+			dog.SetFloat(PROP_DOG_SIGMA, tmpSigma);
 		if (tmpK != prevK)
-			dog.SetFloat(PROP_K, tmpK);
+			dog.SetFloat(PROP_DOG_K, tmpK);
 		if (tmpP != prevP)
-			dog.SetFloat(PROP_P, tmpP);
+			dog.SetFloat(PROP_DOG_P, tmpP);
 		if (tmpPhi != prevPhi)
-			dog.SetFloat(PROP_PHI, tmpPhi);
+			dog.SetFloat(PROP_DOG_PHI, tmpPhi);
 		if (tmpEps != prevEps)
-			dog.SetFloat(PROP_EPS, tmpEps);
+			dog.SetFloat(PROP_DOG_EPS, tmpEps);
 	}
 }

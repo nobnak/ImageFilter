@@ -4,6 +4,8 @@
 		_ETFTex ("Edge Tangent", 2D) = "black" {}		
 		_SigmaD ("Bilat Sigma d", float) = 3.0
 		_SigmaR ("Bilat Sigma r", float) = 0.04
+		_PhiQ ("Quantize phi", float) = 1
+		_Qn ("Quantize steps", int) = 8
 	}
 	SubShader {
 		Cull Off ZTest Always ZWrite Off Fog { Mode Off }
@@ -19,6 +21,8 @@
 		sampler2D _ETFTex;
 		float _SigmaD;
 		float _SigmaR;
+		float _PhiQ;
+		int _Qn;
 
 		struct appdata {
 			float4 vertex : POSITION;
@@ -175,6 +179,25 @@
 				}
 				
 				return float4(sumc / sumw, 0.0);
+			}
+			ENDCG
+		}
+						
+		Pass {
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			
+			float4 frag(vs2ps IN) : COLOR {
+				float4 c = tex2D(_MainTex, IN.uv);
+				float l = c.x;
+				float rQn = 1.0 / _Qn;
+				
+				float qn = floor(l * _Qn + 0.5) * rQn;
+				float t = (smoothstep(-rQn, rQn, _PhiQ * (l - qn)) - 0.5) * rQn;
+				float q = saturate(qn + t);
+				c.x = q;
+				return c;
 			}
 			ENDCG
 		}
