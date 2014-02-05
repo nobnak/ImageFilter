@@ -13,7 +13,6 @@ public class BilateralFilter : MonoBehaviour {
 	public bool quantize;
 	public int iteration = 1;
 	public Material bilateralFilter;
-	public string nextSceneName;
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
 		if (through) {
@@ -67,7 +66,7 @@ public class BilateralFilter : MonoBehaviour {
 		GUI.color = Color.green;
 		GUILayout.BeginVertical();
 		if (GUILayout.Button("Next Scene")) {
-			Application.LoadLevel(nextSceneName);
+			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 			return;
 		}
 		through = GUILayout.Toggle(through, "Bypass");

@@ -9,7 +9,6 @@ public class AnimeCamera : MonoBehaviour {
 	public int bilateralIteration = 1;
 	public Material bilateralFilter;
 	public Material dogFilter;
-	public string nextSceneName;
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
 		if (through) {
@@ -80,7 +79,7 @@ public class AnimeCamera : MonoBehaviour {
 		GUI.color = Color.green;
 		GUILayout.BeginVertical();
 		if (GUILayout.Button("Next Scene")) {
-			Application.LoadLevel(nextSceneName);
+			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 			return;
 		}
 		through = GUILayout.Toggle(through, "Bypass");

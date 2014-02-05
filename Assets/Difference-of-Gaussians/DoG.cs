@@ -13,7 +13,6 @@ public class DoG : MonoBehaviour {
 	public Material dog;
 
 	public bool through;
-	public string nextSceneName;
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
 		if (through) {
@@ -48,7 +47,7 @@ public class DoG : MonoBehaviour {
 		GUI.color = Color.green;
 		GUILayout.BeginVertical(GUILayout.Width(200));
 		if (GUILayout.Button("Next Scene")) {
-			Application.LoadLevel(nextSceneName);
+			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 			return;
 		}
 		GUILayout.Label("Sigma");
