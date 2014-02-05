@@ -34,8 +34,8 @@
 			}
 			
 			float4 frag(vs2ps i) : COLOR {
-				float3 efg = tensor(_MainTex, _MainTex_TexelSize.xy, i.uv);
-				return float4(efg, 1.0);
+				float3 egf = tensor(_MainTex, _MainTex_TexelSize.xy, i.uv);
+				return float4(egf, 1.0);
 			}
 			ENDCG
 		}

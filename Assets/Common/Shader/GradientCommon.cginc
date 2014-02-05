@@ -39,8 +39,8 @@ float3 tensor(sampler2D tex, float2 dx, float2 uv) {
 	float4 gx = ((c8 + 2.0 * c5 + c2) - (c6 + 2.0 * c3 + c0)) / 4.0;
 	float4 gy = ((c6 + 2.0 * c7 + c8) - (c0 + 2.0 * c1 + c2)) / 4.0;
 	
-	float3 efg = float3(dot(gx.xyz, gx.xyz), dot(gy.xyz, gy.xyz), dot(gx.xyz, gy.xyz));
-	return efg;
+	float3 egf = float3(dot(gx.xyz, gx.xyz), dot(gy.xyz, gy.xyz), dot(gx.xyz, gy.xyz));
+	return egf;
 }
 
 #endif

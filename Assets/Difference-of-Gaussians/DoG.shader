@@ -1,6 +1,7 @@
 ﻿Shader "Custom/DoG" {
 	Properties {
 		_MainTex ("RGB", 2D) = "white" {}
+		_DogTex ("DoG Result", 2D) = "white" {}
 		_Sigma ("Sigma", Float) = 1
 		_K ("DoG K", Float) = 1.6
 		_P ("DoG P", Float) = 20
@@ -8,8 +9,7 @@
 		_Eps ("DoG Eps", Float) = 0.8
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
-		LOD 200
+		ZWrite Off ZTest Always Cull Off Fog { Mode Off }
 		
 		CGINCLUDE
 		#pragma exclude_renderers gles
@@ -18,6 +18,7 @@
 		
 		sampler2D _MainTex;
 		float4 _MainTex_TexelSize;
+		sampler2D _DogTex;
 		float _Sigma;
 		float _K;
 		float _P;
@@ -135,11 +136,26 @@
 				float s = (1.0 + _P) * l.r - _P * l.g;
 				float t = saturate(1.0 + tanh(_Phi * (s - _Eps)));
 				
-				return float4(lab2rgb(float3(t, 0.5, 0.5)), 1.0);
+				return float4(t);
 			}
 			ENDCG
 		}
 		
+		Pass {
+			CGPROGRAM
+			#pragma target 3.0
+			#pragma vertex vert
+			#pragma fragment frag
+			
+			float4 frag(vs2ps IN) : COLOR {
+				float4 c = tex2D(_MainTex, IN.uv);
+				float4 t = tex2D(_DogTex, IN.uv);
+				
+				c.x *= t.x;
+				return float4(lab2rgb(c), 1.0);
+			}
+			ENDCG
+		}		
 	} 
 	FallBack "Diffuse"
 }

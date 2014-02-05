@@ -9,10 +9,6 @@ public class DoG : MonoBehaviour {
 	public const string PROP_PHI = "_Phi";
 	public const string PROP_EPS = "_Eps";
 
-	public Material rgb2lab;
-	public Material lab2rgb;
-
-	public Material gaussian;
 	public Material dog;
 
 	public bool through;

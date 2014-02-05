@@ -11,6 +11,7 @@ public class VideoRendering : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
 		camera.transform.position = new Vector3(0f, 0f, -10f);
+		camera.orthographic = true;
 		camera.orthographicSize = 0.5f;
 
 		var quadGo = GameObject.CreatePrimitive(PrimitiveType.Quad);

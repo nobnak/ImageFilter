@@ -34,11 +34,14 @@
 			}
 			
 			float4 frag(vs2ps i) : COLOR {
-				float3 g = tex2D(_MainTex, i.uv);
-				float lambda1 = 0.5 * (g.y + g.x + sqrt(g.y*g.y - 2.0*g.x*g.y + g.x*g.x + 4.0*g.z*g.z));
-				float2 v = float2(g.x - lambda1, g.z);
+				float3 egf = tex2D(_MainTex, i.uv).rgb;
+				float e = egf.x;
+				float g = egf.y;
+				float f = egf.z;
+				float lambda1 = 0.5 * (g + e + sqrt(g*g - 2.0*e*g + e*e + 4.0*f*f));
+				float2 v2 = float2(e - lambda1, f);
 
-				float4 c = (length(v) > 0.0) ? float4(normalize(v), sqrt(lambda1), 1.0) : float4(0.0, 1.0, 0.0, 1.0);
+				float4 c = (length(v2) > 0.0) ? float4(normalize(v2), sqrt(lambda1), 1.0) : float4(0.0, 1.0, 0.0, 1.0);
 				return c;
 			}
 			ENDCG
