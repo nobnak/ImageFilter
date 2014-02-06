@@ -132,7 +132,7 @@
 			float4 frag(vs2ps IN) : COLOR {
 				float2 v2 = tex2D(_ETFTex, IN.uv).rg;
 				float2 v = v2;
-				int band = 5;
+				int band = 10;
 				
 				float2 dx = (abs(v.x) > abs(v.y) ? float2(1.0, v.y / v.x) : float2(v.x / v.y, 1.0)) * _MainTex_TexelSize.xy;
 				float rSigmaD2 = 0.5 / (_SigmaD * _SigmaD);
@@ -162,7 +162,7 @@
 			float4 frag(vs2ps IN) : COLOR {
 				float2 v2 = tex2D(_ETFTex, IN.uv).rg;
 				float2 v = float2(-v2.y, v2.x);
-				int band = 5;
+				int band = 10;
 				
 				float2 dx = (abs(v.x) > abs(v.y) ? float2(1.0, v.y / v.x) : float2(v.x / v.y, 1.0)) * _MainTex_TexelSize.xy;
 				float rSigmaD2 = 0.5 / (_SigmaD * _SigmaD);

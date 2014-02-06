@@ -74,7 +74,7 @@ public class BilateralFilter : MonoBehaviour {
 		GUILayout.Label(string.Format("Iteration : {0:d}", iteration));
 		iteration = (int)GUILayout.HorizontalSlider(iteration, 0f, 9.9f);
 		GUILayout.Label(string.Format("Sigma (distance) : {0:f3}", prevSigmaD));
-		var tmpSigmaD = GUILayout.HorizontalSlider(prevSigmaD, 0f, 2f);
+		var tmpSigmaD = GUILayout.HorizontalSlider(prevSigmaD, 0f, 5f);
 		GUILayout.Label(string.Format("Sigma (color) : {0:f3}", prevSigmaR));
 		var tmpSigmaR = GUILayout.HorizontalSlider(prevSigmaR, 0f, 0.1f);
 		GUILayout.Label(string.Format("Phi Q : {0:f3}", prevPhiQ));

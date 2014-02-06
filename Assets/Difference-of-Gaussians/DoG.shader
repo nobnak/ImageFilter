@@ -134,8 +134,8 @@
 			float4 frag(vs2ps IN) : COLOR {
 				float2 l = tex2D(_MainTex, IN.uv).rg;
 				float s = (1.0 + _P) * l.r - _P * l.g;
-				//float t = saturate(1.0 + tanh(_Phi * (s - _Eps)));
-				float t = smoothstep(-_Phi, 0.0, s - _Eps);
+				float ds = s - _Eps;
+				float t = (ds > 0 ? 1.0 : smoothstep(-_Phi, 0.0, ds));
 				
 				return float4(t);
 			}

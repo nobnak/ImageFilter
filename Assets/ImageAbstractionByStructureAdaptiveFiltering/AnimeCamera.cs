@@ -89,7 +89,7 @@ public class AnimeCamera : MonoBehaviour {
 		GUILayout.Label(string.Format("Iteration : {0:d}", bilateralIteration));
 		bilateralIteration = (int)GUILayout.HorizontalSlider(bilateralIteration, 1f, 9.9f);
 		GUILayout.Label(string.Format("Sigma (distance) : {0:f3}", prevBilateralSigmaD));
-		var tmpBilateralSigmaD = GUILayout.HorizontalSlider(prevBilateralSigmaD, 0f, 2f);
+		var tmpBilateralSigmaD = GUILayout.HorizontalSlider(prevBilateralSigmaD, 0f, 5f);
 		GUILayout.Label(string.Format("Sigma (color) : {0:f3}", prevBilateralSigmaR));
 		var tmpBilaterailSigmaR = GUILayout.HorizontalSlider(prevBilateralSigmaR, 0f, 0.1f);
 		GUILayout.Label(string.Format("Phi Q : {0:f3}", prevPhiQ));
