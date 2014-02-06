@@ -1,12 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ImageAbstractionByStructureAdaptiveFiltering/AnimeCamera.cs">
-    <Files>
-      <File FileName="Assets/ImageAbstractionByStructureAdaptiveFiltering/AnimeCamera.cs" Line="85" Column="4" />
-      <File FileName="Assets/SeparatedOrientation-alignedBilateralFilter/BilateralFilter.cs" Line="74" Column="1" />
-      <File FileName="Assets/Difference-of-Gaussians/DoG.cs" Line="35" Column="36" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
