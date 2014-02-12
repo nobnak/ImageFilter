@@ -51,13 +51,13 @@ public class DoG : MonoBehaviour {
 			return;
 		}
 		GUILayout.Label("Sigma");
-		var tmpSigma = GUILayout.HorizontalSlider(prevSigma, 0.1f, 10f);
+		var tmpSigma = GUILayout.HorizontalSlider(prevSigma, 0.1f, 5f);
 		GUILayout.Label("K");
 		var tmpK = GUILayout.HorizontalSlider(prevK, 1.0f, 3.0f);
 		GUILayout.Label("P");
 		var tmpP = GUILayout.HorizontalSlider(prevP, 0f, 100f);
 		GUILayout.Label("Phi");
-		var tmpPhi = GUILayout.HorizontalSlider(prevPhi, 0f, 1f);
+		var tmpPhi = GUILayout.HorizontalSlider(prevPhi, 0f, 10f);
 		GUILayout.Label("Eps");
 		var tmpEps = GUILayout.HorizontalSlider(prevEps, 0f, 1f);
 		GUILayout.EndVertical();

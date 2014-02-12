@@ -12,6 +12,7 @@
 
 		CGINCLUDE
 		#pragma target 3.0
+		#define BAND 10
 		#include "UnityCG.cginc"
 		#include "Assets/Common/Shader/GradientCommon.cginc"
 		#include "Assets/Common/Shader/LABCommon.cginc"
@@ -132,7 +133,6 @@
 			float4 frag(vs2ps IN) : COLOR {
 				float2 v2 = tex2D(_ETFTex, IN.uv).rg;
 				float2 v = v2;
-				int band = 10;
 				
 				float2 dx = (abs(v.x) > abs(v.y) ? float2(1.0, v.y / v.x) : float2(v.x / v.y, 1.0)) * _MainTex_TexelSize.xy;
 				float rSigmaD2 = 0.5 / (_SigmaD * _SigmaD);
@@ -140,7 +140,7 @@
 				float3 centerc = tex2D(_MainTex, IN.uv).rgb;
 				float3 sumc = 0.0;
 				float sumw = 0.0;
-				for (int i = -band; i <= band; i++) {
+				for (int i = -BAND; i <= BAND; i++) {
 					float3 c = tex2D(_MainTex, IN.uv + i * dx).rgb;
 					float lc = distance(c, centerc);
 					float w = exp(- (i * i) * rSigmaD2) * exp(- (lc * lc) * rSigmaR2);
@@ -162,7 +162,6 @@
 			float4 frag(vs2ps IN) : COLOR {
 				float2 v2 = tex2D(_ETFTex, IN.uv).rg;
 				float2 v = float2(-v2.y, v2.x);
-				int band = 10;
 				
 				float2 dx = (abs(v.x) > abs(v.y) ? float2(1.0, v.y / v.x) : float2(v.x / v.y, 1.0)) * _MainTex_TexelSize.xy;
 				float rSigmaD2 = 0.5 / (_SigmaD * _SigmaD);
@@ -170,7 +169,7 @@
 				float3 centerc = tex2D(_MainTex, IN.uv).rgb;
 				float3 sumc = 0.0;
 				float sumw = 0.0;
-				for (int i = -band; i <= band; i++) {
+				for (int i = -BAND; i <= BAND; i++) {
 					float3 c = tex2D(_MainTex, IN.uv + i * dx).rgb;
 					float lc = distance(c, centerc);
 					float w = exp(- (i * i) * rSigmaD2) * exp(- (lc * lc) * rSigmaR2);

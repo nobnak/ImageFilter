@@ -12,7 +12,7 @@
 		ZWrite Off ZTest Always Cull Off Fog { Mode Off }
 		
 		CGINCLUDE
-		#pragma exclude_renderers gles
+		#define BAND 10
 		#include "UnityCG.cginc"
 		#include "Assets/Common/Shader/LABCommon.cginc"
 		
@@ -63,7 +63,6 @@
 
 			float4 frag(vs2ps IN) : COLOR {
 				float2 dx = float2(_MainTex_TexelSize.x, 0.0);
-				int band = 9;
 				
 				float sigmaK = _K * _Sigma;
 				float sigma2 = _Sigma * _Sigma;
@@ -75,7 +74,7 @@
 				float sumw = 0.0;
 				float sumlK = 0.0;
 				float sumwK = 0.0;
-				for (int i = -band; i <= band; i++) {
+				for (int i = -BAND; i <= BAND; i++) {
 					float w = exp(- (i * i) * rSigma2);
 					float wk = exp(- (i * i) * rSigma2K);
 					float l = tex2D(_MainTex, IN.uv + i * dx).r;
@@ -98,7 +97,6 @@
 
 			float4 frag(vs2ps IN) : COLOR {
 				float2 dx = float2(0.0, _MainTex_TexelSize.y);
-				int band = 9;
 				
 				float sigmaK = _K * _Sigma;
 				float sigma2 = _Sigma * _Sigma;
@@ -110,7 +108,7 @@
 				float sumw = 0.0;
 				float sumlK = 0.0;
 				float sumwK = 0.0;
-				for (int i = -band; i <= band; i++) {
+				for (int i = -BAND; i <= BAND; i++) {
 					float w = exp(- (i * i) * rSigma2);
 					float wk = exp(- (i * i) * rSigma2K);
 					float2 l = tex2D(_MainTex, IN.uv + i * dx).rg;
@@ -135,7 +133,7 @@
 				float2 l = tex2D(_MainTex, IN.uv).rg;
 				float s = (1.0 + _P) * l.r - _P * l.g;
 				float ds = s - _Eps;
-				float t = (ds > 0 ? 1.0 : smoothstep(-_Phi, 0.0, ds));
+				float t = (ds > 0 ? 1.0 : smoothstep(-1.0, 0.0, _Phi * ds));
 				
 				return float4(t);
 			}

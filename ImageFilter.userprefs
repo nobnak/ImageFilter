@@ -1,14 +1,32 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ImageAbstractionByStructureAdaptiveFiltering/AnimeCamera.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SeparatedOrientation-alignedBilateralFilter/BilateralFilter.shader">
     <Files>
-      <File FileName="Assets/SeparatedOrientation-alignedBilateralFilter/BilateralFilter.shader" Line="165" Column="18" />
-      <File FileName="Assets/SeparatedOrientation-alignedBilateralFilter/BilateralFilter.cs" Line="1" Column="1" />
-      <File FileName="Assets/ImageAbstractionByStructureAdaptiveFiltering/AnimeCamera.cs" Line="92" Column="81" />
-      <File FileName="Assets/Common/Scripts/VideoRendering.cs" Line="11" Column="32" />
-      <File FileName="Assets/Difference-of-Gaussians/DoG.shader" Line="135" Column="25" />
-      <File FileName="Assets/Difference-of-Gaussians/DoG.cs" Line="29" Column="77" />
+      <File FileName="../../Repositories/interactionteam-project/EyeDetection/Assets/Face/Face.cs" Line="49" Column="19" />
+      <File FileName="Assets/Difference-of-Gaussians/DoG.shader" Line="15" Column="18" />
+      <File FileName="Assets/SeparatedOrientation-alignedBilateralFilter/BilateralFilter.shader" Line="164" Column="36" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Difference-of-Gaussians" expanded="True" />
+            <Node name="ImageAbstractionByStructureAdaptiveFiltering" expanded="True" />
+            <Node name="SeparatedOrientation-alignedBilateralFilter" expanded="True">
+              <Node name="BilateralFilter.shader" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>pt</Value>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -99,13 +99,13 @@ public class AnimeCamera : MonoBehaviour {
 
 		GUILayout.Label("Difference of Gaussians :");
 		GUILayout.Label(string.Format("Sigma : {0:f3}", prevDogSigma));
-		var tmpSigma = GUILayout.HorizontalSlider(prevDogSigma, 0.1f, 10f);
+		var tmpSigma = GUILayout.HorizontalSlider(prevDogSigma, 0.1f, 5f);
 		GUILayout.Label(string.Format("K : {0:f3}", prevDogK));
 		var tmpK = GUILayout.HorizontalSlider(prevDogK, 1.0f, 3.0f);
 		GUILayout.Label(string.Format("P : {0:f3}", prevDogP));
 		var tmpP = GUILayout.HorizontalSlider(prevDogP, 0f, 100f);
 		GUILayout.Label(string.Format("Phi : {0:f3}", prevDogPhi));
-		var tmpPhi = GUILayout.HorizontalSlider(prevDogPhi, 0f, 1f);
+		var tmpPhi = GUILayout.HorizontalSlider(prevDogPhi, 0f, 10f);
 		GUILayout.Label(string.Format("Eps : {0:f3}", prevDogEps));
 		var tmpEps = GUILayout.HorizontalSlider(prevDogEps, 0f, 1f);
 		GUILayout.EndVertical();
