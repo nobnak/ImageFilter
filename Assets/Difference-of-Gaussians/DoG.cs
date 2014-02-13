@@ -50,15 +50,15 @@ public class DoG : MonoBehaviour {
 			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 			return;
 		}
-		GUILayout.Label("Sigma");
+		GUILayout.Label(string.Format("Sigma : {0:f2}", prevSigma));
 		var tmpSigma = GUILayout.HorizontalSlider(prevSigma, 0.1f, 5f);
-		GUILayout.Label("K");
+		GUILayout.Label(string.Format("K : {0:f2}", prevK));
 		var tmpK = GUILayout.HorizontalSlider(prevK, 1.0f, 3.0f);
-		GUILayout.Label("P");
+		GUILayout.Label(string.Format("P : {0:f2}", prevP));
 		var tmpP = GUILayout.HorizontalSlider(prevP, 0f, 100f);
-		GUILayout.Label("Phi");
+		GUILayout.Label(string.Format("Phi : {0:f2}", prevPhi));
 		var tmpPhi = GUILayout.HorizontalSlider(prevPhi, 0f, 10f);
-		GUILayout.Label("Eps");
+		GUILayout.Label(string.Format("Eps : {0:f2}", prevEps));
 		var tmpEps = GUILayout.HorizontalSlider(prevEps, 0f, 1f);
 		GUILayout.EndVertical();
 

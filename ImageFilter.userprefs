@@ -1,19 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SeparatedOrientation-alignedBilateralFilter/BilateralFilter.shader">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Difference-of-Gaussians/DoG.shader">
     <Files>
-      <File FileName="../../Repositories/interactionteam-project/EyeDetection/Assets/Face/Face.cs" Line="49" Column="19" />
-      <File FileName="Assets/Difference-of-Gaussians/DoG.shader" Line="15" Column="18" />
+      <File FileName="../../Repositories/interactionteam-project/EyeDetection/Assets/Face/Face.cs" Line="48" Column="60" />
+      <File FileName="Assets/Difference-of-Gaussians/DoG.shader" Line="7" Column="27" />
       <File FileName="Assets/SeparatedOrientation-alignedBilateralFilter/BilateralFilter.shader" Line="164" Column="36" />
+      <File FileName="Assets/Difference-of-Gaussians/DoG.cs" Line="75" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Difference-of-Gaussians" expanded="True" />
-            <Node name="ImageAbstractionByStructureAdaptiveFiltering" expanded="True" />
-            <Node name="SeparatedOrientation-alignedBilateralFilter" expanded="True">
-              <Node name="BilateralFilter.shader" selected="True" />
+            <Node name="Difference-of-Gaussians" expanded="True">
+              <Node name="DoG.shader" selected="True" />
             </Node>
           </Node>
         </State>

@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/ImageAbstractionByStructureAdaptiveFiltering/AnimeCamera.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/SeparatedOrientation-alignedBilateralFilter/BilateralFilter.unity
   - enabled: 1
     path: Assets/Difference-of-Gaussians/DoG.unity

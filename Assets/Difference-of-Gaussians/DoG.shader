@@ -12,7 +12,10 @@
 		ZWrite Off ZTest Always Cull Off Fog { Mode Off }
 		
 		CGINCLUDE
-		#define BAND 10
+		#define BAND 5
+		#pragma target 3.0
+		#pragma fragmentoption ARB_precision_hint_fastest
+		#pragma glsl_no_auto_normalization
 		#include "UnityCG.cginc"
 		#include "Assets/Common/Shader/LABCommon.cginc"
 		
@@ -44,7 +47,6 @@
 		
 		Pass {
 			CGPROGRAM
-			#pragma target 3.0
 			#pragma vertex vert
 			#pragma fragment frag
 
@@ -57,7 +59,6 @@
 		
 		Pass {
 			CGPROGRAM
-			#pragma target 3.0
 			#pragma vertex vert
 			#pragma fragment frag
 
@@ -91,7 +92,6 @@
 		
 		Pass {
 			CGPROGRAM
-			#pragma target 3.0
 			#pragma vertex vert
 			#pragma fragment frag
 
@@ -125,7 +125,6 @@
 		
 		Pass {
 			CGPROGRAM
-			#pragma target 3.0
 			#pragma vertex vert
 			#pragma fragment frag
 			
@@ -142,7 +141,6 @@
 		
 		Pass {
 			CGPROGRAM
-			#pragma target 3.0
 			#pragma vertex vert
 			#pragma fragment frag
 			
