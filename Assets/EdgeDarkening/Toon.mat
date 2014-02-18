@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: RGB2LAB
-  m_Shader: {fileID: 4800000, guid: 9f26fd7ef860d48de9c01d130f8a656e, type: 3}
+  m_Name: Toon
+  m_Shader: {fileID: 4800000, guid: 0d29962d113ef4bf8adaf9db9a55eec3, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -20,14 +20,17 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ToonTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 068af97c205db49428ece2fc15b53fd5, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
-          name: _Brightness
-        second: 0
-      data:
-        first:
-          name: _Contrast
+          name: _EdgeGain
         second: 1
     m_Colors:
       data:

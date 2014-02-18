@@ -1,5 +1,9 @@
-#ifndef GRADIENT_COMMON
-#define GRADIENT_COMMON
+#ifndef _GRADIENT_COMMON_
+#define _GRADIENT_COMMON_
+
+#ifndef BAND
+#define BAND 5
+#endif
 
 float2 gradient(sampler2D tex, float2 dx, float2 uv) {
 	float4 c0 = tex2D(tex, uv - dx);
@@ -43,4 +47,32 @@ float3 tensor(sampler2D tex, float2 dx, float2 uv) {
 	return egf;
 }
 
+float3 edgeTangent(sampler2D tex, float2 uv) {
+	float3 egf = tex2D(tex, uv).rgb;
+	float e = egf.x;
+	float g = egf.y;
+	float f = egf.z;
+	float lambda1 = 0.5 * (g + e + sqrt(g*g - 2.0*e*g + e*e + 4.0*f*f));
+	float2 v2 = float2(e - lambda1, f);
+
+	return (length(v2) > 0.0) ? float3(normalize(v2), sqrt(lambda1)) : float3(0.0, 1.0, 0.0);
+}
+
+float3 separableBilateral(float2 v, sampler2D tex, float2 uv, float4 texelSize, float sigmaD, float sigmaR) {
+	float2 dx = (abs(v.x) > abs(v.y) ? float2(1.0, v.y / v.x) : float2(v.x / v.y, 1.0)) * texelSize.xy;
+	float rSigmaD2 = 0.5 / (sigmaD * sigmaD);
+	float rSigmaR2 = 0.5 / (sigmaR * sigmaR);
+	float3 centerc = tex2D(tex, uv).rgb;
+	float3 sumc = 0.0;
+	float sumw = 0.0;
+	for (int i = -BAND; i <= BAND; i++) {
+		float3 c = tex2D(tex, uv + i * dx).rgb;
+		float lc = distance(c, centerc);
+		float w = exp(- (i * i) * rSigmaD2) * exp(- (lc * lc) * rSigmaR2);
+		sumc += c * w;
+		sumw += w;
+	}
+
+	return sumc / sumw;
+}
 #endif

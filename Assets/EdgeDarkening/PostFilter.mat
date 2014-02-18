@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: LAB2RGB
-  m_Shader: {fileID: 4800000, guid: 9e1193418c9b04a88824eee195b91560, type: 3}
+  m_Name: PostFilter
+  m_Shader: {fileID: 4800000, guid: 029f9148aadd2431db69f3df7e9aaa43, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -23,12 +23,8 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Brightness
-        second: 0
-      data:
-        first:
-          name: _Contrast
-        second: 1
+          name: _EdgeGain
+        second: 3.93000007
     m_Colors:
       data:
         first:

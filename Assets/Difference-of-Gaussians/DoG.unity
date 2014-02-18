@@ -179,4 +179,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dog: {fileID: 2100000, guid: 62b1d5b3480554c61a048f1c0e1a3c6f, type: 2}
+  lab: {fileID: 2100000, guid: b8c9c19afd6ca4df2a2397907ef1ca91, type: 2}
   through: 0
+  edgeDetect: 0

@@ -31,7 +31,7 @@ Material:
       data:
         first:
           name: _Sigma
-        second: .984152436
+        second: .827769339
       data:
         first:
           name: _K
@@ -39,15 +39,19 @@ Material:
       data:
         first:
           name: _P
-        second: 20
+        second: 20.2127647
       data:
         first:
           name: _Phi
-        second: 5.01407957
+        second: 4.25531912
       data:
         first:
           name: _Eps
-        second: .279411793
+        second: .228723392
+      data:
+        first:
+          name: _Tau
+        second: .980000019
     m_Colors:
       data:
         first:
