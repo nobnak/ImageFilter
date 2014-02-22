@@ -4,18 +4,18 @@ Unityで色々イメージエフェクト
 
 シェーダを作成した環境の都合でMacでしか動かないかも。
 
-## バイラテラルフィルタ[2]
-ETF(Edget Tangent Field)を使って高速化した、バイラテラルフィルタ
+## バイラテラルフィルタ
+ETF(Edget Tangent Field)を使って高速化した、バイラテラルフィルタ[2]
 
 [Demo](http://nobnak.github.io/SceneSamples/SeparatedBilateralFilter/SeparatedBilateralFilter.html)
 
-## Diffusion-of-Gaussians(DoG)[1]
-DoGでエッジエフェクト
+## Diffusion-of-Gaussians(DoG)
+DoGでエッジエフェクト[1]
 
 [Demo](http://nobnak.github.io/SceneSamples/ThresholdedDoG/ThresholdedDoG.html)
 
-## アニメ風カメラ[1,3]
-上の2つを組み合わせたもの
+## アニメ風カメラ
+上の2つを組み合わせたもの[1,3]
 
 [Demo](http://nobnak.github.io/SceneSamples/AnimeCamera/AnimeCamera.html)
 
