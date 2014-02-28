@@ -172,6 +172,7 @@ MonoBehaviour:
   bilateralIteration: 4
   bilateralFilter: {fileID: 2100000, guid: d7fbc8f0b5dfa4ba28c9986b7c6dbb6f, type: 2}
   dogFilter: {fileID: 2100000, guid: 62b1d5b3480554c61a048f1c0e1a3c6f, type: 2}
+  labFilter: {fileID: 2100000, guid: b8c9c19afd6ca4df2a2397907ef1ca91, type: 2}
 --- !u!114 &859836759
 MonoBehaviour:
   m_ObjectHideFlags: 0

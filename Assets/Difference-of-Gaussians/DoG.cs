@@ -11,8 +11,9 @@ public class DoG : MonoBehaviour {
 	public const string PROP_DOG_EPS = "_Eps";
 	public const string PROP_DOG_TAU = "_Tau";
 
-	public Material dog;
-	public Material lab;
+	public Material dogFilter;
+	public Material bilateralFilter;
+	public Material labFilter;
 
 	public bool through;
 	public bool edgeDetect;
@@ -28,25 +29,40 @@ public class DoG : MonoBehaviour {
 		#else
 		var rtformat = RenderTextureFormat.ARGBFloat;
 		#endif
-		var tmp0 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
-		var tmp1 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var tmpTex0 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var tmpTex1 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var etfTex = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var labTex = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
 
-		Graphics.Blit(src, tmp0, lab, 0);
-		Graphics.Blit(tmp0, tmp1, dog, 0);
-		Graphics.Blit(tmp1, tmp0, dog, 1);
-		Graphics.Blit(tmp0, dst, dog, (edgeDetect ? 3 : 2));
+		bilateralFilter.SetTexture(BilateralFilter.PROP_BILATERAL_ETF_TEX, etfTex);
 
-		RenderTexture.ReleaseTemporary(tmp0);
-		RenderTexture.ReleaseTemporary(tmp1);
+		Graphics.Blit(src, labTex, labFilter, 0);
+
+		Graphics.Blit(labTex, tmpTex1, bilateralFilter, 0);
+		Graphics.Blit(tmpTex1, tmpTex0, bilateralFilter, 1);
+		Graphics.Blit(tmpTex0, tmpTex1, bilateralFilter, 2);
+		Graphics.Blit(tmpTex1, etfTex,  bilateralFilter, 3);
+		
+		Graphics.Blit(labTex,  tmpTex1, bilateralFilter, 4);
+		Graphics.Blit(tmpTex1, tmpTex0, bilateralFilter, 5);
+
+		Graphics.Blit(tmpTex0, tmpTex1, dogFilter, 0);
+		Graphics.Blit(tmpTex1, tmpTex0, dogFilter, 1);
+		Graphics.Blit(tmpTex0, dst, dogFilter, (edgeDetect ? 3 : 2));
+
+		RenderTexture.ReleaseTemporary(tmpTex0);
+		RenderTexture.ReleaseTemporary(tmpTex1);
+		RenderTexture.ReleaseTemporary(etfTex);
+		RenderTexture.ReleaseTemporary(labTex);
 	}
 
 	void OnGUI() {
-		var prevSigma = dog.GetFloat(PROP_DOG_SIGMA);
-		var prevK = dog.GetFloat(PROP_DOG_K);
-		var prevP = dog.GetFloat(PROP_DOG_P);
-		var prevPhi = dog.GetFloat(PROP_DOG_PHI);
-		var prevEps = dog.GetFloat(PROP_DOG_EPS);
-		var prevTau = dog.GetFloat(PROP_DOG_TAU);
+		var prevSigma = dogFilter.GetFloat(PROP_DOG_SIGMA);
+		var prevK = dogFilter.GetFloat(PROP_DOG_K);
+		var prevP = dogFilter.GetFloat(PROP_DOG_P);
+		var prevPhi = dogFilter.GetFloat(PROP_DOG_PHI);
+		var prevEps = dogFilter.GetFloat(PROP_DOG_EPS);
+		var prevTau = dogFilter.GetFloat(PROP_DOG_TAU);
 
 		GUI.color = Color.green;
 		GUILayout.BeginVertical(GUILayout.Width(200));
@@ -70,16 +86,16 @@ public class DoG : MonoBehaviour {
 		GUILayout.EndVertical();
 
 		if (tmpSigma != prevSigma)
-			dog.SetFloat(PROP_DOG_SIGMA, tmpSigma);
+			dogFilter.SetFloat(PROP_DOG_SIGMA, tmpSigma);
 		if (tmpK != prevK)
-			dog.SetFloat(PROP_DOG_K, tmpK);
+			dogFilter.SetFloat(PROP_DOG_K, tmpK);
 		if (tmpP != prevP)
-			dog.SetFloat(PROP_DOG_P, tmpP);
+			dogFilter.SetFloat(PROP_DOG_P, tmpP);
 		if (tmpPhi != prevPhi)
-			dog.SetFloat(PROP_DOG_PHI, tmpPhi);
+			dogFilter.SetFloat(PROP_DOG_PHI, tmpPhi);
 		if (tmpEps != prevEps)
-			dog.SetFloat(PROP_DOG_EPS, tmpEps);
+			dogFilter.SetFloat(PROP_DOG_EPS, tmpEps);
 		if (tmpTau != prevTau)
-			dog.SetFloat(PROP_DOG_TAU, tmpTau);
+			dogFilter.SetFloat(PROP_DOG_TAU, tmpTau);
 	}
 }

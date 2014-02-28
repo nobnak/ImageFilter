@@ -178,7 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724eae9256e7f43baaf51da28987b0d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dog: {fileID: 2100000, guid: 62b1d5b3480554c61a048f1c0e1a3c6f, type: 2}
-  lab: {fileID: 2100000, guid: b8c9c19afd6ca4df2a2397907ef1ca91, type: 2}
+  dogFilter: {fileID: 2100000, guid: 62b1d5b3480554c61a048f1c0e1a3c6f, type: 2}
+  bilateralFilter: {fileID: 2100000, guid: d7fbc8f0b5dfa4ba28c9986b7c6dbb6f, type: 2}
+  labFilter: {fileID: 2100000, guid: b8c9c19afd6ca4df2a2397907ef1ca91, type: 2}
   through: 0
   edgeDetect: 0

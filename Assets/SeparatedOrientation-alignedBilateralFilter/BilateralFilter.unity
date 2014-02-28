@@ -182,3 +182,4 @@ MonoBehaviour:
   quantize: 0
   iteration: 1
   bilateralFilter: {fileID: 2100000, guid: d7fbc8f0b5dfa4ba28c9986b7c6dbb6f, type: 2}
+  lab: {fileID: 2100000, guid: b8c9c19afd6ca4df2a2397907ef1ca91, type: 2}

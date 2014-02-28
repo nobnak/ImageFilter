@@ -3,12 +3,15 @@ using System.Collections;
 
 [RequireComponent(typeof(Camera))]
 public class AnimeCamera : MonoBehaviour {
+	public const string PROP_LAB_LUMINANCE_TEX = "_LuminanceTex";
 
 	public bool through;
 	public bool quantize;
 	public int bilateralIteration = 1;
+
 	public Material bilateralFilter;
 	public Material dogFilter;
+	public Material labFilter;
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
 		if (through) {
@@ -21,46 +24,47 @@ public class AnimeCamera : MonoBehaviour {
 #else
 		var rtformat = RenderTextureFormat.ARGBFloat;
 #endif
-		var tmp0 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
-		var tmp1 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
-		var etf = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
-		var lab = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
-		var bil = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
-		var dog = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var tmpTex0 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var tmpTex1 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var etfTex = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var labTex = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var bilTex = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var dogTex = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
 
-		bilateralFilter.SetTexture(BilateralFilter.PROP_BILATERAL_ETF_TEX, etf);
-		dogFilter.SetTexture(DoG.PROP_DOG_DOG_TEX, dog);
+		bilateralFilter.SetTexture(BilateralFilter.PROP_BILATERAL_ETF_TEX, etfTex);
+		labFilter.SetTexture(PROP_LAB_LUMINANCE_TEX, dogTex);
 
-		Graphics.Blit(src,  lab, bilateralFilter, 0);
-		Graphics.Blit(lab, tmp1, bilateralFilter, 1);
-		Graphics.Blit(tmp1, tmp0, bilateralFilter, 2);
-		Graphics.Blit(tmp0, tmp1, bilateralFilter, 3);
-		Graphics.Blit(tmp1, etf,  bilateralFilter, 4);
+		Graphics.Blit(src,  labTex, labFilter, 0);
 
-		Graphics.Blit(lab,  tmp1, bilateralFilter, 5);
-		Graphics.Blit(tmp1, tmp0, bilateralFilter, 6);
-		Graphics.Blit(tmp0, dog);
+		Graphics.Blit(labTex, tmpTex1, bilateralFilter, 0);
+		Graphics.Blit(tmpTex1, tmpTex0, bilateralFilter, 1);
+		Graphics.Blit(tmpTex0, tmpTex1, bilateralFilter, 2);
+		Graphics.Blit(tmpTex1, etfTex,  bilateralFilter, 3);
+
+		Graphics.Blit(labTex,  tmpTex1, bilateralFilter, 4);
+		Graphics.Blit(tmpTex1, tmpTex0, bilateralFilter, 5);
+		Graphics.Blit(tmpTex0, dogTex);
 		for (var i = 1; i < bilateralIteration; i++) {
-			Graphics.Blit(tmp0, tmp1, bilateralFilter, 5);
-			Graphics.Blit(tmp1, tmp0, bilateralFilter, 6);
+			Graphics.Blit(tmpTex0, tmpTex1, bilateralFilter, 4);
+			Graphics.Blit(tmpTex1, tmpTex0, bilateralFilter, 5);
 		}
 		if (quantize) 
-			Graphics.Blit(tmp0, bil, bilateralFilter, 7);
+			Graphics.Blit(tmpTex0, bilTex, bilateralFilter, 6);
 		else
-			Graphics.Blit(tmp0, bil);
+			Graphics.Blit(tmpTex0, bilTex);
 
-		Graphics.Blit(dog, tmp1, dogFilter, 1);
-		Graphics.Blit(tmp1, tmp0, dogFilter, 2);
-		Graphics.Blit(tmp0, dog, dogFilter, 3);
+		Graphics.Blit(dogTex, tmpTex1, dogFilter, 0);
+		Graphics.Blit(tmpTex1, tmpTex0, dogFilter, 1);
+		Graphics.Blit(tmpTex0, dogTex, dogFilter, 2);
 
-		Graphics.Blit(bil, dst, dogFilter, 4);
+		Graphics.Blit(bilTex, dst, labFilter, 2);
 
-		RenderTexture.ReleaseTemporary(tmp0);
-		RenderTexture.ReleaseTemporary(tmp1);
-		RenderTexture.ReleaseTemporary(etf);
-		RenderTexture.ReleaseTemporary(lab);
-		RenderTexture.ReleaseTemporary(bil);
-		RenderTexture.ReleaseTemporary(dog);
+		RenderTexture.ReleaseTemporary(tmpTex0);
+		RenderTexture.ReleaseTemporary(tmpTex1);
+		RenderTexture.ReleaseTemporary(etfTex);
+		RenderTexture.ReleaseTemporary(labTex);
+		RenderTexture.ReleaseTemporary(bilTex);
+		RenderTexture.ReleaseTemporary(dogTex);
 	}
 
 	void OnGUI() {

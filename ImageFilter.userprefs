@@ -1,24 +1,26 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Difference-of-Gaussians/DoG.shader">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Common/Scripts/VideoRendering.cs">
     <Files>
-      <File FileName="Assets/Difference-of-Gaussians/DoG.shader" Line="87" Column="9" />
-      <File FileName="Assets/ImageAbstractionByStructureAdaptiveFiltering/AnimeCamera.cs" Line="102" Column="66" />
+      <File FileName="Assets/Common/Scripts/CloneCamera.cs" Line="18" Column="11" />
+      <File FileName="Assets/Common/Scripts/BackgroundFullscreen.cs" Line="1" Column="1" />
+      <File FileName="Assets/Shift/RenderTargetBinder.cs" Line="1" Column="1" />
+      <File FileName="Assets/Shift/Shift.shader" Line="47" Column="44" />
+      <File FileName="Assets/Shift/PrimitiveCloud.cs" Line="1" Column="1" />
+      <File FileName="Assets/Common/Scripts/ConstantRotator.cs" Line="1" Column="1" />
+      <File FileName="../../../Downloads/builtin_shaders-4.2.0/CGIncludes/UnityCG.cginc" Line="406" Column="50" />
+      <File FileName="Assets/Common/Scripts/VideoRendering.cs" Line="7" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Common" expanded="True">
-              <Node name="Scripts" expanded="True" />
-              <Node name="Shader" expanded="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="VideoRendering.cs" selected="True" />
+              </Node>
             </Node>
-            <Node name="Difference-of-Gaussians" expanded="True">
-              <Node name="DoG.shader" selected="True" />
-            </Node>
-            <Node name="EdgeDarkening" expanded="True" />
-            <Node name="ImageAbstractionByStructureAdaptiveFiltering" expanded="True" />
-            <Node name="SeparatedOrientation-alignedBilateralFilter" expanded="True" />
+            <Node name="Shift" expanded="True" />
           </Node>
         </State>
       </Pad>

@@ -10,7 +10,7 @@
 		_Tau ("DoG Tau", Float) = 0.98
 	}
 	SubShader {
-		ZWrite Off ZTest Always Cull Off Fog { Mode Off }
+		ZWrite Off ZTest Always Cull Off Fog { Mode Off } Blend Off
 		
 		CGINCLUDE
 		#define BAND 5
@@ -80,7 +80,7 @@
 				float2 l = tex2D(_MainTex, IN.uv).rg;
 				float s = (1.0 + _P) * l.r - _P * l.g;
 				float ds = s - _Eps;
-				float t = (ds > 0 ? 1.0 : smoothstep(-1.0, 1.0, _Phi * ds));
+				float t = (ds > 0.0 ? 1.0 : smoothstep(-1.0, 1.0, _Phi * ds));
 				
 				return float4(t);
 			}

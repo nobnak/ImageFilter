@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 1095839976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1160872512
@@ -241,8 +241,8 @@ Camera:
   m_GameObject: {fileID: 1363087425}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -286,3 +286,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postFilter: {fileID: 2100000, guid: e1e98295efb68410b80c1a5358fba805, type: 2}
+  dogFilter: {fileID: 2100000, guid: 62b1d5b3480554c61a048f1c0e1a3c6f, type: 2}
+  labFilter: {fileID: 2100000, guid: b8c9c19afd6ca4df2a2397907ef1ca91, type: 2}
+  dogThrough: 0

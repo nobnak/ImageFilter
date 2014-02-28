@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PostFilter
-  m_Shader: {fileID: 4800000, guid: 029f9148aadd2431db69f3df7e9aaa43, type: 3}
+  m_Name: Shift
+  m_Shader: {fileID: 4800000, guid: aac28c0e6af9d4c43844493d7c73e459, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -20,20 +20,17 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _EdgeTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
-          name: _EdgeGain
-        second: .425531745
+          name: _Scale
+        second: 1
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _Offset
+        second: {r: .0299999993, g: 0, b: 0, a: 0}

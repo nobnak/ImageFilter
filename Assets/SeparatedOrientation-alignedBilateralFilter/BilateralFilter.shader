@@ -42,18 +42,6 @@
 			return o;			
 		}
 		ENDCG
-						
-		Pass {
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
-			
-			float4 frag(vs2ps IN) : COLOR {
-				float4 c = tex2D(_MainTex, IN.uv);
-				return float4(rgb2lab(c.rgb), 0.0);
-			}
-			ENDCG
-		}
 		
 		Pass {
 			CGPROGRAM
@@ -162,18 +150,6 @@
 				float q = saturate(qn + t);
 				c.x = q;
 				return c;
-			}
-			ENDCG
-		}
-						
-		Pass {
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
-			
-			float4 frag(vs2ps IN) : COLOR {
-				float4 c = tex2D(_MainTex, IN.uv);
-				return float4(lab2rgb(c.xyz), 0.0);
 			}
 			ENDCG
 		}

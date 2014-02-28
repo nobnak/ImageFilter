@@ -1,17 +1,19 @@
 ﻿Shader "Custom/PostFilter" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
+		_EdgeTex ("Edge", 2D) = "white" {}
+		_PaperTex ("Paper", 2D) = "black" {}
 		_EdgeGain ("Edge Darkening", Float) = 1.0
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
-		LOD 200
+		ZWrite Off ZTest Always Cull Off Fog { Mode Off } Blend Off
 		
 		CGINCLUDE
 		#include "UnityCG.cginc"
 		
 		sampler2D _MainTex;
 		float4 _MainTex_TexelSize;
+		sampler2D _EdgeTex;
 		float _EdgeGain;
 		
 		struct appdata {
@@ -38,14 +40,26 @@
 			#pragma fragment frag
 			
 			float4 frag(vs2ps IN) : COLOR {
-				float2 duv = _MainTex_TexelSize;
-				
-				float4 grad = abs(tex2D(_MainTex, IN.uv + float2(duv.x, 0.0)) - tex2D(_MainTex, IN.uv + float2(-duv.x, 0.0)))
-					+ abs(tex2D(_MainTex, IN.uv + float2(0.0, duv.y)) - tex2D(_MainTex, IN.uv + float2(0.0, -duv.y)));
-					
 				float4 c = tex2D(_MainTex, IN.uv);
-				float d = smoothstep(0.0, 1.0, grad * _EdgeGain);
-				return c - (c - (c * c)) * (d - 1.0);	
+				float l = tex2D(_EdgeTex, IN.uv).x;
+				float d = 1.0 + (1.0 - l) * _EdgeGain;
+				c.x = c.x - (c.x - (c.x * c.x)) * (d - 1.0);
+				return c;
+			}
+			ENDCG
+		}
+				
+		Pass {
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			
+			float4 frag(vs2ps IN) : COLOR {
+				float4 c = tex2D(_MainTex, IN.uv);
+				float l = tex2D(_EdgeTex, IN.uv).x;
+				float d = 1.0 + (1.0 - l) * _EdgeGain;
+				c.x = c.x - (c.x - (c.x * c.x)) * (d - 1.0);
+				return c;
 			}
 			ENDCG
 		}

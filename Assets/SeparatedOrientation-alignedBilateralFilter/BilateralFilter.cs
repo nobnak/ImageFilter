@@ -12,7 +12,9 @@ public class BilateralFilter : MonoBehaviour {
 	public bool through;
 	public bool quantize;
 	public int iteration = 1;
+
 	public Material bilateralFilter;
+	public Material lab;
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
 		if (through) {
@@ -25,36 +27,37 @@ public class BilateralFilter : MonoBehaviour {
 		#else
 		var rtformat = RenderTextureFormat.ARGBFloat;
 		#endif
-		var tmp0 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
-		var tmp1 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
-		var etf = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
-		var lab = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var tmpTex0 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var tmpTex1 = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var etfTex = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
+		var labTex = RenderTexture.GetTemporary(src.width, src.height, 0, rtformat);
 
-		bilateralFilter.SetTexture(PROP_BILATERAL_ETF_TEX, etf);
+		bilateralFilter.SetTexture(PROP_BILATERAL_ETF_TEX, etfTex);
 
-		Graphics.Blit(src,  lab, bilateralFilter, 0);
-		Graphics.Blit(lab, tmp1, bilateralFilter, 1);
-		Graphics.Blit(tmp1, tmp0, bilateralFilter, 2);
-		Graphics.Blit(tmp0, tmp1, bilateralFilter, 3);
-		Graphics.Blit(tmp1, etf,  bilateralFilter, 4);
+		Graphics.Blit(src,  labTex, lab, 0);
 
-		Graphics.Blit(lab,  tmp1, bilateralFilter, 5);
-		Graphics.Blit(tmp1, tmp0, bilateralFilter, 6);
+		Graphics.Blit(labTex, tmpTex1, bilateralFilter, 0);
+		Graphics.Blit(tmpTex1, tmpTex0, bilateralFilter, 1);
+		Graphics.Blit(tmpTex0, tmpTex1, bilateralFilter, 2);
+		Graphics.Blit(tmpTex1, etfTex,  bilateralFilter, 3);
+
+		Graphics.Blit(labTex,  tmpTex1, bilateralFilter, 4);
+		Graphics.Blit(tmpTex1, tmpTex0, bilateralFilter, 5);
 		for (var i = 1; i < iteration; i++) {
-			Graphics.Blit(tmp0, tmp1, bilateralFilter, 5);
-			Graphics.Blit(tmp1, tmp0, bilateralFilter, 6);
+			Graphics.Blit(tmpTex0, tmpTex1, bilateralFilter, 4);
+			Graphics.Blit(tmpTex1, tmpTex0, bilateralFilter, 5);
 		}
 		if (quantize) {
-			Graphics.Blit(tmp0, tmp1, bilateralFilter, 7);
-			Graphics.Blit(tmp1, dst, bilateralFilter, 8);
+			Graphics.Blit(tmpTex0, tmpTex1, bilateralFilter, 6);
+			Graphics.Blit(tmpTex1, dst, lab, 1);
 		} else {
-			Graphics.Blit(tmp0, dst, bilateralFilter, 8);
+			Graphics.Blit(tmpTex0, dst, lab, 1);
 		}
 
-		RenderTexture.ReleaseTemporary(tmp0);
-		RenderTexture.ReleaseTemporary(tmp1);
-		RenderTexture.ReleaseTemporary(etf);
-		RenderTexture.ReleaseTemporary(lab);
+		RenderTexture.ReleaseTemporary(tmpTex0);
+		RenderTexture.ReleaseTemporary(tmpTex1);
+		RenderTexture.ReleaseTemporary(etfTex);
+		RenderTexture.ReleaseTemporary(labTex);
 	}
 
 	void OnGUI() {

@@ -31,11 +31,11 @@ Material:
       data:
         first:
           name: _SigmaD
-        second: 2.5
+        second: 3.69230771
       data:
         first:
           name: _SigmaR
-        second: .0189275388
+        second: .0196967684
       data:
         first:
           name: _PhiQ
