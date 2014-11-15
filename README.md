@@ -1,22 +1,13 @@
-ImageFilter
+Image Filters for Unity
 ===========
-Unityで色々イメージエフェクト
-
-シェーダを作成した環境の都合でMacでしか動かないかも。
-
-## バイラテラルフィルタ
-ETF(Edget Tangent Field)を使って高速化した、バイラテラルフィルタ[2]
-
+* Fast Bilateral Filter using ETF(Edget Tangent Field) [2]
+[Source](Assets/SeparatedOrientation-alignedBilateralFilter),
 [Demo](http://nobnak.github.io/SceneSamples/SeparatedBilateralFilter/SeparatedBilateralFilter.html)
-
-## Diffusion-of-Gaussians(DoG)
-DoGでエッジエフェクト[1]
-
+* Diffusion-of-Gaussians(DoG) [1]
+[Source](Assets/Difference-of-Gaussians),
 [Demo](http://nobnak.github.io/SceneSamples/ThresholdedDoG/ThresholdedDoG.html)
-
-## アニメ風カメラ
-上の2つを組み合わせたもの[1,3]
-
+* Toon Shader [1,3]
+[Source](Assets/ImageAbstractionByStructureAdaptiveFiltering),
 [Demo](http://nobnak.github.io/SceneSamples/AnimeCamera/AnimeCamera.html)
 
 # References
